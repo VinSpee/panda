@@ -36,6 +36,11 @@ export const createContext = ({ hash, prefix }: ContextOptions = {}): Stylesheet
     shorthands: true,
   })
 
+  const properties = Array.from(new Set(['css', ...utility.keys(), ...conditions.keys()]))
+  const propertyMap = new Map(properties.map((prop) => [prop, true]))
+
+  const isValidProperty = (key: string) => propertyMap.has(key)
+
   return {
     hash,
     root: postcss.root(),
@@ -43,6 +48,7 @@ export const createContext = ({ hash, prefix }: ContextOptions = {}): Stylesheet
     utility: utility,
     helpers: { map: () => '' },
     layers: defaultLayers,
+    isValidProperty,
   }
 }
 

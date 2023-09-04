@@ -19,6 +19,7 @@ export type StylesheetContext = {
   hash?: boolean
   transform?: AtomicRuleTransform
   layers: CascadeLayers
+  isValidProperty: (key: string) => boolean
 }
 
 export type RecipeNode = {

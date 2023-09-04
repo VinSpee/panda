@@ -70,7 +70,7 @@ export class Stylesheet {
   }
 
   processStyleProps = (styleObject: SystemStyleObject & { css?: SystemStyleObject }) => {
-    const { css: cssObject, ...restStyles } = styleObject
+    const { css: cssObject, ...restStyles } = filterProps(this.context.isValidProperty, styleObject)
     this.processAtomic(restStyles, cssObject)
   }
 
@@ -155,4 +155,14 @@ export class Stylesheet {
   prepend = (...css: string[]) => {
     this.context.root.prepend(...css)
   }
+}
+
+const filterProps = (isValidProperty: (key: string) => boolean, props: Dict) => {
+  const clone = {} as Dict
+  for (const [key, value] of Object.entries(props)) {
+    if (isValidProperty(key)) {
+      clone[key] = value
+    }
+  }
+  return clone
 }

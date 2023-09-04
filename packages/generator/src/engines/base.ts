@@ -76,6 +76,13 @@ export const getBaseEngine = (conf: ConfigResultWithHooks) => {
 
   const layerString = `@layer ${layerNames.join(', ')};`
 
+  const properties = Array.from(new Set(['css', ...utility.keys(), ...conditions.keys()]))
+  const propertyMap = new Map(properties.map((prop) => [prop, true]))
+
+  const isValidProperty = memo((key: string) => {
+    return propertyMap.has(key) || isCssProperty(key)
+  })
+
   const createSheetContext = (): StylesheetContext => ({
     root: postcss.root(),
     conditions,
@@ -83,6 +90,7 @@ export const getBaseEngine = (conf: ConfigResultWithHooks) => {
     hash: hash.className,
     helpers,
     layers,
+    isValidProperty,
   })
 
   const createSheet = (options?: Pick<StylesheetOptions, 'content'>) => {
@@ -99,13 +107,6 @@ export const getBaseEngine = (conf: ConfigResultWithHooks) => {
   const recipes = new Recipes(recipeConfigs, recipeContext)
   // cache recipes on first run
   recipes.save()
-
-  const properties = Array.from(new Set(['css', ...utility.keys(), ...conditions.keys()]))
-  const propertyMap = new Map(properties.map((prop) => [prop, true]))
-
-  const isValidProperty = memo((key: string) => {
-    return propertyMap.has(key) || isCssProperty(key)
-  })
 
   const studio = {
     outdir: `${config.outdir}-studio`,

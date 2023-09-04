@@ -25,12 +25,15 @@ const utility = new Utility({
   tokens,
 })
 
-export const createContext = (): StylesheetContext => ({
+const createContext = (): StylesheetContext => ({
   root: postcss.root(),
   conditions: conditions,
   utility: utility,
   helpers: { map: () => '' },
   layers: defaultLayers,
+  isValidProperty(_key) {
+    return true
+  },
 })
 
 function css(obj: ProcessOptions) {
