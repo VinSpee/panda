@@ -1511,38 +1511,10 @@ describe('extract to css output pipeline', () => {
         },
         {
           "data": [
-            {
-              "spacing": "sm",
-            },
-          ],
-          "name": "AnotherButton",
-          "type": "jsx-recipe",
-        },
-        {
-          "data": [
-            {
-              "color": "blue",
-            },
-          ],
-          "name": "ComplexDesignSystemButton",
-          "type": "jsx-recipe",
-        },
-        {
-          "data": [
             {},
           ],
           "name": "anotherButton",
           "type": "recipe",
-        },
-        {
-          "data": [
-            {
-              "size": "md",
-              "variant": "danger",
-            },
-          ],
-          "name": "AnotherButtonWithRegex",
-          "type": "jsx-recipe",
         },
         {
           "data": [
@@ -1591,10 +1563,6 @@ describe('extract to css output pipeline', () => {
 
         .bg_red\\\\.200 {
           background: var(--colors-red-200)
-          }
-
-        .text_blue {
-          color: blue
           }
 
         .z_100 {
@@ -2073,12 +2041,16 @@ describe('preset patterns', () => {
           display: flex
           }
 
-        .flex_column {
-          flex-direction: column
+        .items_center {
+          align-items: center
           }
 
         .gap_10px {
           gap: 10px
+          }
+
+        .flex_column {
+          flex-direction: column
           }
 
         .text_blue\\\\.100 {
@@ -2167,12 +2139,16 @@ describe('preset patterns', () => {
           display: flex
           }
 
-        .flex_column {
-          flex-direction: column
+        .items_center {
+          align-items: center
           }
 
         .gap_10px {
           gap: 10px
+          }
+
+        .flex_row {
+          flex-direction: row
           }
 
         .text_blue\\\\.100 {
@@ -2335,6 +2311,18 @@ describe('preset patterns', () => {
 
     expect(result.css).toMatchInlineSnapshot(`
       "@layer utilities {
+        .pos_relative {
+          position: relative
+          }
+
+        .\\\\[\\\\&_\\\\:where\\\\(a\\\\,_abbr\\\\)\\\\]\\\\:pos_relative :where(a, abbr) {
+          position: relative
+              }
+
+        .\\\\[\\\\&_\\\\:where\\\\(a\\\\,_abbr\\\\)\\\\]\\\\:z_1 :where(a, abbr) {
+          z-index: 1
+              }
+
         .pos_static {
           position: static
           }
@@ -2797,14 +2785,6 @@ describe('preset patterns', () => {
 
     expect(result.css).toMatchInlineSnapshot(`
       "@layer utilities {
-        .d_grid {
-          display: grid
-          }
-
-        .gap_10px {
-          gap: 10px
-          }
-
         .text_blue\\\\.100 {
           color: var(--colors-blue-100)
           }
