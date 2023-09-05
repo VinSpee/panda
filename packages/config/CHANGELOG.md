@@ -1,5 +1,15 @@
 # @pandacss/config
 
+## 0.14.1
+
+### Patch Changes
+
+- @pandacss/error@0.14.1
+- @pandacss/logger@0.14.1
+- @pandacss/preset-base@0.14.1
+- @pandacss/preset-panda@0.14.1
+- @pandacss/types@0.14.1
+
 ## 0.14.0
 
 ### Patch Changes

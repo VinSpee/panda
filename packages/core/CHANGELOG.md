@@ -1,5 +1,16 @@
 # @pandacss/core
 
+## 0.14.1
+
+### Patch Changes
+
+- dd47b6e6: Fix issue where hideFrom doesn't work due to incorrect breakpoint computation
+  - @pandacss/error@0.14.1
+  - @pandacss/logger@0.14.1
+  - @pandacss/shared@0.14.1
+  - @pandacss/token-dictionary@0.14.1
+  - @pandacss/types@0.14.1
+
 ## 0.14.0
 
 ### Patch Changes
